@@ -26,34 +26,24 @@ func NewClient(useChinaAPI bool) (*Client, error) {
 }
 
 func (c *Client) sendRequest(req *http.Request, v interface{}) (err error) {
-	var (
-		resp *http.Response
-		data []byte
-	)
 	req.Header.Set("Accept", "application/json")
-
-	resp, err = c.client.Do(req)
+	resp, err := c.client.Do(req)
 	if err != nil {
 		return err
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode < 200 || resp.StatusCode > 299 {
-		errResp := &ErrorResponse{
-			StatusCode: resp.StatusCode,
-			RequestURL: req.URL.String(),
-		}
-		data, err = ioutil.ReadAll(resp.Body)
-
-		if err == nil && len(data) > 0 {
-			errResp.ResponseBody = string(data)
-		}
-		return errResp
-	}
-
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return
+	}
+
+	if resp.StatusCode < 200 || resp.StatusCode > 299 {
+		return &ErrorResponse{
+			StatusCode:   resp.StatusCode,
+			RequestURL:   req.URL.String(),
+			ResponseBody: string(body),
+		}
 	}
 
 	err = json.Unmarshal(body, v)
