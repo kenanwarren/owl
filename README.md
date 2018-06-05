@@ -1,5 +1,4 @@
 [![Go Report Card](https://goreportcard.com/badge/redorb/owl)](https://goreportcard.com/report/redorb/owl)
-## WIP project structure is still in flux.
 ### GO client for Overwatch League REST API
 
 ### New Client
