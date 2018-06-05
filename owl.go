@@ -2,7 +2,6 @@ package owl
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 )
@@ -14,9 +13,9 @@ type Client struct {
 
 // NewClient returns new Client struct
 func NewClient(useChinaAPI bool) (*Client, error) {
-	baseURL := "https://api.overwatchleague.com"
+	baseURL := OverwatchAPIEndpoint
 	if useChinaAPI {
-		baseURL = "https://api.overwatchleague.cn"
+		baseURL = ChineseOverwatchAPIEndpoint
 	}
 
 	return &Client{
@@ -48,15 +47,4 @@ func (c *Client) sendRequest(req *http.Request, v interface{}) (err error) {
 
 	err = json.Unmarshal(body, v)
 	return
-}
-
-type ErrorResponse struct {
-	StatusCode   int
-	RequestURL   string
-	ResponseBody string
-}
-
-// Error method implementation for ErrorResponse struct
-func (r *ErrorResponse) Error() string {
-	return fmt.Sprintf("Response Error:\nRequest URL: %s\nStatus Code: %i\nResponse Body: %s\n", r.StatusCode, r.ResponseBody)
 }

@@ -5,7 +5,6 @@ import (
 	"net/http"
 )
 
-// https://api.overwatchleague.com/v2/teams?expand=team.content
 type TeamsResponse struct {
 	Data []struct {
 		ID              int    `json:"id"`
@@ -36,9 +35,9 @@ type TeamsResponse struct {
 				Type string `json:"type"`
 				URL  string `json:"url"`
 			} `json:"accounts"`
-			Number       int    `json:"number"`
-			Headshot     string `json:"headshot"`
-			HomeLocation string `json:"homeLocation,omitempty"`
+			Number       FlexibleInteger `json:"number"` // Empty is "" ?!? use custom unmarshaler to handle
+			Headshot     string          `json:"headshot"`
+			HomeLocation string          `json:"homeLocation,omitempty"`
 		} `json:"players"`
 		Colors struct {
 			Primary struct {

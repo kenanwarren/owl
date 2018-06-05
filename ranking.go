@@ -50,7 +50,7 @@ type RankingResponse struct {
 	PlayoffCutoff    int `json:"playoffCutoff"`
 }
 
-// GetRanking gets the current rankings from the OWL API
+// GetRanking gets the current ranking from the OWL API
 // Endpoint: GET /ranking
 func (c *Client) GetRanking() (*RankingResponse, error) {
 	r := &RankingResponse{}
