@@ -19,162 +19,26 @@ type ScheduleResponse struct {
 				ID   int    `json:"id"`
 				Type string `json:"type"`
 			} `json:"tournaments"`
-			Matches []struct {
-				ID          int `json:"id"`
-				Competitors []struct {
-					ID                 int      `json:"id"`
-					AvailableLanguages []string `json:"availableLanguages"`
-					Handle             string   `json:"handle"`
-					Name               string   `json:"name"`
-					HomeLocation       string   `json:"homeLocation"`
-					PrimaryColor       string   `json:"primaryColor"`
-					SecondaryColor     string   `json:"secondaryColor"`
-					Game               string   `json:"game"`
-					AbbreviatedName    string   `json:"abbreviatedName"`
-					AddressCountry     string   `json:"addressCountry"`
-					Logo               string   `json:"logo"`
-					Icon               string   `json:"icon"`
-					SecondaryPhoto     string   `json:"secondaryPhoto"`
-					Type               string   `json:"type"`
-				} `json:"competitors"`
-				Scores []struct {
-					Value int `json:"value"`
-				} `json:"scores"`
-				ConclusionValue    int    `json:"conclusionValue"`
-				ConclusionStrategy string `json:"conclusionStrategy"`
-				Winner             struct {
-					ID                 int      `json:"id"`
-					AvailableLanguages []string `json:"availableLanguages"`
-					Handle             string   `json:"handle"`
-					Name               string   `json:"name"`
-					HomeLocation       string   `json:"homeLocation"`
-					PrimaryColor       string   `json:"primaryColor"`
-					SecondaryColor     string   `json:"secondaryColor"`
-					Game               string   `json:"game"`
-					AbbreviatedName    string   `json:"abbreviatedName"`
-					AddressCountry     string   `json:"addressCountry"`
-					Logo               string   `json:"logo"`
-					Icon               string   `json:"icon"`
-					SecondaryPhoto     string   `json:"secondaryPhoto"`
-					Type               string   `json:"type"`
-				} `json:"winner"`
-				State        string `json:"state"`
-				Status       string `json:"status"`
-				StatusReason string `json:"statusReason"`
-				Attributes   struct {
-				} `json:"attributes"`
-				Games []struct {
-					ID         int   `json:"id"`
-					Number     int   `json:"number"`
-					Points     []int `json:"points"`
-					Attributes struct {
-						InstanceID string `json:"instanceID"`
-						Map        string `json:"map"`
-						MapScore   struct {
-							Team1 int `json:"team1"`
-							Team2 int `json:"team2"`
-						} `json:"mapScore"`
-					} `json:"attributes"`
-					AttributesVersion string      `json:"attributesVersion"`
-					State             string      `json:"state"`
-					Status            string      `json:"status"`
-					StatusReason      string      `json:"statusReason"`
-					Stats             interface{} `json:"stats"`
-					Handle            string      `json:"handle"`
-				} `json:"games"`
-				ClientHints   []interface{} `json:"clientHints"`
-				DateCreated   int64         `json:"dateCreated"`
-				Flags         []interface{} `json:"flags"`
-				Handle        string        `json:"handle"`
-				StartDate     time.Time     `json:"startDate"`
-				EndDate       time.Time     `json:"endDate"`
-				ShowStartTime bool          `json:"showStartTime"`
-				ShowEndTime   bool          `json:"showEndTime"`
-				StartDateTS   int64         `json:"startDateTS"`
-				EndDateTS     int64         `json:"endDateTS"`
-				YoutubeID     string        `json:"youtubeId"`
-				Wins          []int         `json:"wins"`
-				Ties          []int         `json:"ties"`
-				Losses        []int         `json:"losses"`
-				Videos        []struct {
-					Name         int    `json:"name"`
-					Description  string `json:"description"`
-					VodLink      string `json:"vodLink"`
-					YoutubeID    string `json:"youtubeId"`
-					ThumbnailURL string `json:"thumbnailUrl"`
-				} `json:"videos"`
-				Tournament struct {
-					ID   int    `json:"id"`
-					Type string `json:"type"`
-				} `json:"tournament"`
-			} `json:"matches"`
-			Weeks []struct {
+			Matches []MatchResponse `json:"matches"`
+			Weeks   []struct {
 				ID        int   `json:"id"`
 				StartDate int64 `json:"startDate"`
 				EndDate   int64 `json:"endDate"`
 				Matches   []struct {
-					ID          int `json:"id"`
-					Competitors []struct {
-						ID                 int      `json:"id"`
-						AvailableLanguages []string `json:"availableLanguages"`
-						Handle             string   `json:"handle"`
-						Name               string   `json:"name"`
-						HomeLocation       string   `json:"homeLocation"`
-						PrimaryColor       string   `json:"primaryColor"`
-						SecondaryColor     string   `json:"secondaryColor"`
-						Game               string   `json:"game"`
-						AbbreviatedName    string   `json:"abbreviatedName"`
-						AddressCountry     string   `json:"addressCountry"`
-						Logo               string   `json:"logo"`
-						Icon               string   `json:"icon"`
-						SecondaryPhoto     string   `json:"secondaryPhoto"`
-						Type               string   `json:"type"`
-					} `json:"competitors"`
-					Scores []struct {
+					ID          int          `json:"id"`
+					Competitors []Competitor `json:"competitors"`
+					Scores      []struct {
 						Value int `json:"value"`
 					} `json:"scores"`
 					ConclusionValue    int    `json:"conclusionValue"`
 					ConclusionStrategy string `json:"conclusionStrategy"`
-					Winner             struct {
-						ID                 int      `json:"id"`
-						AvailableLanguages []string `json:"availableLanguages"`
-						Handle             string   `json:"handle"`
-						Name               string   `json:"name"`
-						HomeLocation       string   `json:"homeLocation"`
-						PrimaryColor       string   `json:"primaryColor"`
-						SecondaryColor     string   `json:"secondaryColor"`
-						Game               string   `json:"game"`
-						AbbreviatedName    string   `json:"abbreviatedName"`
-						AddressCountry     string   `json:"addressCountry"`
-						Logo               string   `json:"logo"`
-						Icon               string   `json:"icon"`
-						SecondaryPhoto     string   `json:"secondaryPhoto"`
-						Type               string   `json:"type"`
-					} `json:"winner"`
-					State        string `json:"state"`
-					Status       string `json:"status"`
-					StatusReason string `json:"statusReason"`
-					Attributes   struct {
+					Winner             Player `json:"winner"`
+					State              string `json:"state"`
+					Status             string `json:"status"`
+					StatusReason       string `json:"statusReason"`
+					Attributes         struct {
 					} `json:"attributes"`
-					Games []struct {
-						ID         int   `json:"id"`
-						Number     int   `json:"number"`
-						Points     []int `json:"points"`
-						Attributes struct {
-							InstanceID string `json:"instanceID"`
-							Map        string `json:"map"`
-							MapScore   struct {
-								Team1 int `json:"team1"`
-								Team2 int `json:"team2"`
-							} `json:"mapScore"`
-						} `json:"attributes"`
-						AttributesVersion string      `json:"attributesVersion"`
-						State             string      `json:"state"`
-						Status            string      `json:"status"`
-						StatusReason      string      `json:"statusReason"`
-						Stats             interface{} `json:"stats"`
-						Handle            string      `json:"handle"`
-					} `json:"games"`
+					Games         []Game        `json:"games"`
 					ClientHints   []interface{} `json:"clientHints"`
 					DateCreated   int64         `json:"dateCreated"`
 					Flags         []interface{} `json:"flags"`

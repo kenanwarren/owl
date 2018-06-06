@@ -6,73 +6,7 @@ import (
 )
 
 type TeamResponse struct {
-	Data struct {
-		ID              int    `json:"id"`
-		DivisionID      int    `json:"divisionId"`
-		Handle          string `json:"handle"`
-		Name            string `json:"name"`
-		AbbreviatedName string `json:"abbreviatedName"`
-		Logo            struct {
-			Main struct {
-				Svg string `json:"svg"`
-				Png string `json:"png"`
-			} `json:"main"`
-			MainName struct {
-				Svg string `json:"svg"`
-				Png string `json:"png"`
-			} `json:"mainName"`
-		} `json:"logo"`
-		HasFallback bool   `json:"hasFallback"`
-		Location    string `json:"location"`
-		Players     []struct {
-			ID       int    `json:"id"`
-			Handle   string `json:"handle"`
-			Name     string `json:"name"`
-			FullName string `json:"fullName"`
-			Role     string `json:"role"`
-			Accounts []struct {
-				ID   int    `json:"id"`
-				Type string `json:"type"`
-				URL  string `json:"url"`
-			} `json:"accounts"`
-			Number       int    `json:"number"`
-			Headshot     string `json:"headshot"`
-			HomeLocation string `json:"homeLocation,omitempty"`
-		} `json:"players"`
-		Colors struct {
-			Primary struct {
-				Color   string `json:"color"`
-				Opacity int    `json:"opacity"`
-			} `json:"primary"`
-			Secondary struct {
-				Color   string `json:"color"`
-				Opacity int    `json:"opacity"`
-			} `json:"secondary"`
-			Tertiary struct {
-				Color   string `json:"color"`
-				Opacity int    `json:"opacity"`
-			} `json:"tertiary"`
-		} `json:"colors"`
-		Accounts []struct {
-			ID   int    `json:"id"`
-			Type string `json:"type"`
-			URL  string `json:"url"`
-		} `json:"accounts"`
-		Website   string `json:"website"`
-		Placement int    `json:"placement"`
-		Advantage int    `json:"advantage"`
-		Records   struct {
-			MatchWin          int `json:"matchWin"`
-			MatchLoss         int `json:"matchLoss"`
-			MatchDraw         int `json:"matchDraw"`
-			MatchBye          int `json:"matchBye"`
-			GameWin           int `json:"gameWin"`
-			GameLoss          int `json:"gameLoss"`
-			GameTie           int `json:"gameTie"`
-			GamePointsFor     int `json:"gamePointsFor"`
-			GamePointsAgainst int `json:"gamePointsAgainst"`
-		} `json:"records"`
-	} `json:"data"`
+	Data Team `json:"data"`
 	Meta struct {
 		Strings struct {
 			OwlTeamHeaderAtlantic                  string `json:"owl.team.header.atlantic"`
