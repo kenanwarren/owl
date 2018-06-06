@@ -11,9 +11,12 @@ func TestGetMatches(t *testing.T) {
 	}
 	matches, err := c.GetMatches()
 	if err != nil {
+		t.Log(err)
 		t.Error("Error contacting owl api for matches")
 	}
 	if len(matches.Content) == 0 {
 		t.Error("No content returned for matches from owl api")
 	}
+
+	t.Log(matches.Content[0].StartDate)
 }

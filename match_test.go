@@ -11,6 +11,7 @@ func TestGetMatch(t *testing.T) {
 	}
 	match, err := c.GetMatch("10229")
 	if err != nil {
+		t.Log(err)
 		t.Error("Error contacting owl api for match")
 	}
 	if len(match.Competitors) == 0 {

@@ -11,6 +11,7 @@ func TestGetSchedule(t *testing.T) {
 	}
 	schedule, err := c.GetSchedule()
 	if err != nil {
+		t.Log(err)
 		t.Error("Error contacting owl api for schedule")
 	}
 	if len(schedule.Data.Stages) == 0 {
