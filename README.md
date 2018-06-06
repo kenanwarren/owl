@@ -1,6 +1,6 @@
 [![Go Report Card](https://goreportcard.com/badge/redorb/owl)](https://goreportcard.com/report/redorb/owl)
 [![](https://godoc.org/github.com/redorb/owl?status.svg)](http://godoc.org/github.com/redorb/owl)
-### GO client for Overwatch League REST API
+### Go client for Overwatch League REST API
 
 ### New Client
 
