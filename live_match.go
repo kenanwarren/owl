@@ -1,6 +1,10 @@
 package owl
 
-import "time"
+import (
+	"fmt"
+	"net/http"
+	"time"
+)
 
 // Need to document https://api.overwatchleague.com/live-match
 // query params expand=team.content&locale=en-us
@@ -258,4 +262,23 @@ type LiveMatchResponse struct {
 			OwlRewardsInfoDescriptionLoggedIn string `json:"owl.rewards.info.description.logged-in"`
 		} `json:"strings"`
 	} `json:"meta"`
+}
+
+// GetLiveMatch gets the current live match if one is in progress
+// from the owl api.
+// Endpoint: GET /live-match
+// query params expand=team.content&locale=en-us
+func (c *Client) GetLiveMatch() (*LiveMatchResponse, error) {
+	l := &LiveMatchResponse{}
+
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s/live-match", c.baseURL), nil)
+	if err != nil {
+		return l, err
+	}
+
+	if err = c.sendRequest(req, l); err != nil {
+		return l, err
+	}
+
+	return l, nil
 }
