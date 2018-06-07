@@ -1,5 +1,7 @@
 package owl
 
+import "time"
+
 // Need to document https://api.overwatchleague.com/live-match
 // query params expand=team.content&locale=en-us
 type LiveMatchResponse struct {
