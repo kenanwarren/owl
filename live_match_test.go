@@ -13,7 +13,7 @@ func TestGetLiveMatch(t *testing.T) {
 	if err != nil {
 		t.Error("Error contacting owl api for live match")
 	}
-	if len(match.Data.LiveMatch.LiveStatus) == 0 {
-		t.Error("No live match status from owl api")
+	if len(match.Meta.Strings.OwlLiveMatchUpcoming) == 0 {
+		t.Error("No upcoming match meta string.")
 	}
 }
